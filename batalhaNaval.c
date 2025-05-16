@@ -1,14 +1,53 @@
 #include <stdio.h>
 
-// Desafio Batalha Naval - MateCheck
-// Este código inicial serve como base para o desenvolvimento do sistema de Batalha Naval.
-// Siga os comentários para implementar cada parte do desafio.
+// Nível Novato - Posicionamento dos Navios
 
 int main() {
-    // Nível Novato - Posicionamento dos Navios
-    // Sugestão: Declare uma matriz bidimensional para representar o tabuleiro (Ex: int tabuleiro[5][5];).
-    // Sugestão: Posicione dois navios no tabuleiro, um verticalmente e outro horizontalmente.
-    // Sugestão: Utilize `printf` para exibir as coordenadas de cada parte dos navios.
+
+// Sugestão: Declare uma matriz bidimensional para representar o tabuleiro (Ex: int tabuleiro[5][5];).
+int tabuleiro[10][10]; // Matriz 10x10 para o tabuleiro
+
+    // Inicializa o tabuleiro com 0 (água)
+    for (int i = 0; i < 10; i++) {
+        for (int j = 0; j < 10; j++) {
+            tabuleiro[i][j] = 0;
+        }
+    }
+
+    // Posicionar navio horizontal (linha 2, colunas 1, 2, 3)
+    int linhaHorizontal = 2;
+    int colunaInicialH = 1;
+    for (int i = 0; i < 3; i++) {
+        tabuleiro[linhaHorizontal][colunaInicialH + i] = 3;
+    }
+
+    // Posicionar navio vertical (coluna 6, linhas 5, 6, 7)
+    int colunaVertical = 6;
+    int linhaInicialV = 5;
+    for (int i = 0; i < 3; i++) {
+        tabuleiro[linhaInicialV + i][colunaVertical] = 3;
+    }
+
+    // Exibir o título
+    printf("TABULEIRO BATALHA NAVAL\n\n");
+
+    // Exibir números das colunas
+    printf("    "); 
+    for (int col = 0; col < 10; col++) {
+        printf(" %d  ", col);
+    }
+    printf("\n");
+
+    // Exibir o tabuleiro com linhas e conteúdo
+    for (int lin = 0; lin < 10; lin++) {
+        printf("%d |", lin);
+        for (int col = 0; col < 10; col++) {
+            printf(" %d  ", tabuleiro[lin][col]);
+        }
+        printf("\n");
+    }
+
+    
 
     // Nível Aventureiro - Expansão do Tabuleiro e Posicionamento Diagonal
     // Sugestão: Expanda o tabuleiro para uma matriz 10x10.
