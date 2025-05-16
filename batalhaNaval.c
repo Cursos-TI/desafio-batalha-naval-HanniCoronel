@@ -1,58 +1,72 @@
 #include <stdio.h>
 
-// Nível Novato - Posicionamento dos Navios
+#define TAM 10 // Tamanho do tabuleiro
+#define TAM_NAVIO 3 // Tamanho fixo dos navios
 
 int main() {
 
-// Sugestão: Declare uma matriz bidimensional para representar o tabuleiro (Ex: int tabuleiro[5][5];).
-int tabuleiro[10][10]; // Matriz 10x10 para o tabuleiro
+    // Nível Aventureiro - Expansão do Tabuleiro e Posicionamento Diagonal
+    int tabuleiro[TAM][TAM];
 
-    // Inicializa o tabuleiro com 0 (água)
-    for (int i = 0; i < 10; i++) {
-        for (int j = 0; j < 10; j++) {
+    // Inicializar o tabuleiro com 0 (água)
+    for (int i = 0; i < TAM; i++) {
+        for (int j = 0; j < TAM; j++) {
             tabuleiro[i][j] = 0;
         }
     }
 
-    // Posicionar navio horizontal (linha 2, colunas 1, 2, 3)
-    int linhaHorizontal = 2;
-    int colunaInicialH = 1;
-    for (int i = 0; i < 3; i++) {
-        tabuleiro[linhaHorizontal][colunaInicialH + i] = 3;
+    
+    // Navio 1 - Horizontal (linha 1, colunas 1,2,3)
+    int linhaH = 1, colInicioH = 1;
+    for (int i = 0; i < TAM_NAVIO; i++) {
+        tabuleiro[linhaH][colInicioH + i] = 3;
     }
 
-    // Posicionar navio vertical (coluna 6, linhas 5, 6, 7)
-    int colunaVertical = 6;
-    int linhaInicialV = 5;
-    for (int i = 0; i < 3; i++) {
-        tabuleiro[linhaInicialV + i][colunaVertical] = 3;
+    // Navio 2 - Vertical (coluna 6, linhas 5,6,7)
+    int colunaV = 4, linhaInicioV = 3;
+    for (int i = 0; i < TAM_NAVIO; i++) {
+        tabuleiro[linhaInicioV + i][colunaV] = 3;
     }
 
-    // Exibir o título
+
+    // Navio 3 - Diagonal Principal (posição i = 0, j = 0 até i = 2, j = 2)
+    int linhaD1 = 0, colD1 = 0;
+    for (int i = 0; i < TAM_NAVIO; i++) {
+        // Verifica se a posição está livre (não tem navio)
+        if (tabuleiro[linhaD1 + i][colD1 + i] == 0) {
+            tabuleiro[linhaD1 + i][colD1 + i] = 3;
+        }
+    }
+
+    // Navio 4 - Diagonal Secundária (posição i = 0, j = 9 até i = 2, j = 7)
+    int linhaD2 = 0, colD2 = 9;
+    for (int i = 0; i < TAM_NAVIO; i++) {
+        // Verifica se a posição está livre (não tem navio)
+        if (tabuleiro[linhaD2 + i][colD2 - i] == 0) {
+            tabuleiro[linhaD2 + i][colD2 - i] = 3;
+        }
+    }
+
+    
+    // Exibir cabeçalho do tabuleiro
     printf("TABULEIRO BATALHA NAVAL\n\n");
 
-    // Exibir números das colunas
-    printf("    "); 
-    for (int col = 0; col < 10; col++) {
+    printf("    "); // espaço para alinhar os números da coluna
+    for (int col = 0; col < TAM; col++) {
         printf(" %d  ", col);
     }
     printf("\n");
 
-    // Exibir o tabuleiro com linhas e conteúdo
-    for (int lin = 0; lin < 10; lin++) {
-        printf("%d |", lin);
-        for (int col = 0; col < 10; col++) {
+    // Exibir o conteúdo do tabuleiro
+    for (int lin = 0; lin < TAM; lin++) {
+        printf("%d |", lin); // número da linha
+        for (int col = 0; col < TAM; col++) {
             printf(" %d  ", tabuleiro[lin][col]);
         }
         printf("\n");
     }
 
-    
-
-    // Nível Aventureiro - Expansão do Tabuleiro e Posicionamento Diagonal
-    // Sugestão: Expanda o tabuleiro para uma matriz 10x10.
-    // Sugestão: Posicione quatro navios no tabuleiro, incluindo dois na diagonal.
-    // Sugestão: Exiba o tabuleiro completo no console, mostrando 0 para posições vazias e 3 para posições ocupadas.
+       
 
     // Nível Mestre - Habilidades Especiais com Matrizes
     // Sugestão: Crie matrizes para representar habilidades especiais como cone, cruz, e octaedro.
